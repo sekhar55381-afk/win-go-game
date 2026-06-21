@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Go Game - KE, 5D, TRX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎮 Win Go</h1>
+            <div class="wallet-info">
+                <span class="balance">💰 Balance: $<span id="balance">1000</span></span>
+                <span class="user-name" id="userName">Guest</span>
+            </div>
+        </header>
+
+        <!-- Authentication Section -->
+        <div id="authSection" class="auth-section">
+            <div class="auth-card">
+                <h2>Welcome to Win Go</h2>
+                <div class="auth-form">
+                    <input type="text" id="authUsername" placeholder="Username" class="input-field">
+                    <input type="email" id="authEmail" placeholder="Email" class="input-field">
+                    <button onclick="login()" class="btn btn-primary">Login / Register</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Game Section -->
+        <div id="gameSection" class="game-section" style="display:none;">
+            <!-- Game Selector -->
+            <div class="game-selector">
+                <button class="game-btn active" onclick="selectGame('ke')">🇰🇪 KE</button>
+                <button class="game-btn" onclick="selectGame('5d')">5️⃣ 5D</button>
+                <button class="game-btn" onclick="selectGame('trx')">💎 TRX</button>
+            </div>
+
+            <!-- KE Game -->
+            <div id="keGame" class="game-container active">
+                <h2>Kenya Lottery (KE)</h2>
+                <div class="game-info">
+                    <p>Select a number between 0-99</p>
+                    <div class="timer">Round closes in: <span id="keTimer">60</span>s</div>
+                </div>
+                <div class="number-grid" id="keNumberGrid"></div>
+                <div class="betting-section">
+                    <input type="number" id="keBetAmount" placeholder="Bet Amount" class="input-field" value="10">
+                    <button onclick="placeBetKE()" class="btn btn-success">Place Bet</button>
+                </div>
+                <div id="keResult" class="result-section"></div>
+            </div>
+
+            <!-- 5D Game -->
+            <div id="5dGame" class="game-container">
+                <h2>5D Lottery</h2>
+                <div class="game-info">
+                    <p>Select a 5-digit number (00000-99999)</p>
+                    <div class="timer">Round closes in: <span id="5dTimer">60</span>s</div>
+                </div>
+                <div class="five-d-input">
+                    <input type="text" id="5dNumber" placeholder="Enter 5 digits" maxlength="5" class="input-field number-input" onkeypress="return /[0-9]/i.test(event.key)">
+                    <div class="digit-display" id="digitDisplay">00000</div>
+                </div>
+                <div class="betting-section">
+                    <input type="number" id="5dBetAmount" placeholder="Bet Amount" class="input-field" value="10">
+                    <button onclick="placeBet5D()" class="btn btn-success">Place Bet</button>
+                </div>
+                <div id="5dResult" class="result-section"></div>
+            </div>
+
+            <!-- TRX Game -->
+            <div id="trxGame" class="game-container">
+                <h2>TRX Crypto Game</h2>
+                <div class="game-info">
+                    <p>Predict: Red or Blue (or Green)</p>
+                    <div class="timer">Round closes in: <span id="trxTimer">60</span>s</div>
+                </div>
+                <div class="color-selection">
+                    <button class="color-btn red" onclick="selectColor('red')">🔴 Red</button>
+                    <button class="color-btn blue" onclick="selectColor('blue')">🔵 Blue</button>
+                    <button class="color-btn green" onclick="selectColor('green')">🟢 Green</button>
+                </div>
+                <div class="selected-color" id="selectedColor">Select a color</div>
+                <div class="betting-section">
+                    <input type="number" id="trxBetAmount" placeholder="Bet Amount (TRX)" class="input-field" value="10">
+                    <button onclick="placeBetTRX()" class="btn btn-success">Place Bet</button>
+                </div>
+                <div id="trxResult" class="result-section"></div>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <div class="history-section">
+            <h3>📜 Betting History</h3>
+            <div id="historyList" class="history-list"></div>
+        </div>
+
+        <!-- Logout Button -->
+        <div class="logout-section">
+            <button onclick="logout()" class="btn btn-danger">Logout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
